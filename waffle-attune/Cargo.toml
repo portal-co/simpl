@@ -1,6 +1,6 @@
 [package]
 name = "portal-pc-waffle-attune"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 description = "Obfuscation for waffle"
 license = "CC0-1.0"
