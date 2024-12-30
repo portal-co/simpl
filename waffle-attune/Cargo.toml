@@ -2,7 +2,7 @@
 name = "portal-pc-waffle-attune"
 version = "0.1.2"
 edition = "2021"
-decsription = "Obfuscation for waffle"
+description = "Obfuscation for waffle"
 license = "CC0-1.0"
 
 [dependencies]
