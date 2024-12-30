@@ -603,6 +603,48 @@ dependencies = [
 ]
 
 [[package]]
+name = "portal-pc-waffle-attune"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "arena-traits",
+ "bit-iter",
+ "portal-pc-waffle",
+ "rand",
+ "rand_chacha",
+ "rand_derive2",
+ "stacker",
+]
+
+[[package]]
+name = "portal-pc-waffle-bounce"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "arena-traits",
+ "portal-pc-waffle",
+]
+
+[[package]]
+name = "portal-pc-waffle-robake"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "arena-traits",
+ "portal-pc-waffle",
+]
+
+[[package]]
+name = "portal-pc-waffle-tunnel"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "arena-traits",
+ "portal-pc-waffle",
+ "stacker",
+]
+
+[[package]]
 name = "ppv-lite86"
 version = "0.2.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -974,48 +1016,6 @@ name = "version_check"
 version = "0.9.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
-
-[[package]]
-name = "waffle-attune"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "arena-traits",
- "bit-iter",
- "portal-pc-waffle",
- "rand",
- "rand_chacha",
- "rand_derive2",
- "stacker",
-]
-
-[[package]]
-name = "waffle-bounce"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "arena-traits",
- "portal-pc-waffle",
-]
-
-[[package]]
-name = "waffle-robake"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "arena-traits",
- "portal-pc-waffle",
-]
-
-[[package]]
-name = "waffle-tunnel"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "arena-traits",
- "portal-pc-waffle",
- "stacker",
-]
 
 [[package]]
 name = "wasi"
