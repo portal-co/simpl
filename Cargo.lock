@@ -604,7 +604,7 @@ dependencies = [
 
 [[package]]
 name = "portal-pc-waffle-attune"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "arena-traits",
@@ -618,7 +618,7 @@ dependencies = [
 
 [[package]]
 name = "portal-pc-waffle-bounce"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "arena-traits",
@@ -627,7 +627,7 @@ dependencies = [
 
 [[package]]
 name = "portal-pc-waffle-robake"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "arena-traits",
@@ -636,7 +636,7 @@ dependencies = [
 
 [[package]]
 name = "portal-pc-waffle-tunnel"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "arena-traits",

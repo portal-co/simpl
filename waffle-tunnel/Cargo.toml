@@ -1,6 +1,6 @@
 [package]
 name = "portal-pc-waffle-tunnel"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 decsription = "Simplification for waffle"
 license = "CC0-1.0"
