@@ -1,0 +1,6 @@
+[workspace]
+members=[ "waffle-attune", "waffle-bounce", "waffle-robake","waffle-tunnel"]
+resolver="2"
+
+[workspace.dependencies]
+portal-pc-waffle="0.3.5"

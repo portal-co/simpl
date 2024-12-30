@@ -1,0 +1,10 @@
+[package]
+name = "waffle-tunnel"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.94"
+arena-traits = "0.2.1"
+portal-pc-waffle.workspace = true
+stacker = "0.1.17"
