@@ -1,6 +1,6 @@
 [package]
 name = "portal-pc-waffle-robake"
-version = "0.2.2"
+version = "0.2.3"
 edition = "2021"
 description = "Simplification for waffle"
 license = "CC0-1.0"
