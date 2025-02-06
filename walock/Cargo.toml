@@ -1,0 +1,9 @@
+[package]
+name = "portal-pc-waffle-tunnel-walock"
+version = "0.1.0"
+edition = "2021"
+description = "Simplification for waffle"
+license = "CC0-1.0"
+
+[dependencies]
+embedded-io = "0.6.1"

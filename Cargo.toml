@@ -1,5 +1,5 @@
 [workspace]
-members=[ "waffle-attune", "waffle-bounce", "waffle-robake","waffle-tunnel"]
+members=[ "waffle-attune", "waffle-bounce", "waffle-robake","waffle-tunnel", "walock"]
 resolver="2"
 
 [workspace.dependencies]

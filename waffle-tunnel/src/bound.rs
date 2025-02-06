@@ -2,17 +2,24 @@ use std::mem::swap;
 
 use waffle::{
     copying::fcopy::{obf_fn_body, DontObf, Obfuscate},
-    BlockTarget, FunctionBody, Module, Operator, ValueDef,
+    BlockTarget, Func, FunctionBody, Module, Operator, ValueDef,
 };
 
 pub struct Bound {
     pub next_era: bool,
     pub era: bool,
+    pub binders: Binders,
 }
-pub fn bound() -> Box<dyn FnMut(&mut FunctionBody, &mut Module) -> anyhow::Result<bool>> {
+#[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Copy)]
+pub struct Binders {
+    pub u32: Option<Func>,
+    pub u64: Option<Func>,
+}
+pub fn bound(b: Binders) -> Box<dyn FnMut(&mut FunctionBody, &mut Module) -> anyhow::Result<bool>> {
     let mut b = Bound {
         next_era: false,
         era: false,
+        binders: b,
     };
     return Box::new(move |f, m| {
         swap(&mut b.next_era, &mut b.era);
@@ -46,7 +53,11 @@ impl Obfuscate for Bound {
                     let ks = (0..value)
                         .map(|x| {
                             let c = f.add_block();
-                            let cv = f.add_op(c, Operator::I32Const { value: x }, &[], types);
+                            let mut cv = f.add_op(c, Operator::I32Const { value: x }, &[], types);
+                            if let Some(b) = self.binders.u32 {
+                                cv =
+                                    f.add_op(c, Operator::Call { function_index: b }, &[cv], types);
+                            }
                             f.set_terminator(
                                 c,
                                 waffle::Terminator::Br {
@@ -91,7 +102,16 @@ impl Obfuscate for Bound {
                         let ks = (0..=value)
                             .map(|x| {
                                 let c = f.add_block();
-                                let cv = f.add_op(c, Operator::I32Const { value: x }, &[], types);
+                                let mut cv =
+                                    f.add_op(c, Operator::I32Const { value: x }, &[], types);
+                                if let Some(b) = self.binders.u32 {
+                                    cv = f.add_op(
+                                        c,
+                                        Operator::Call { function_index: b },
+                                        &[cv],
+                                        types,
+                                    );
+                                }
                                 f.set_terminator(
                                     c,
                                     waffle::Terminator::Br {
@@ -137,7 +157,11 @@ impl Obfuscate for Bound {
                     let ks = (0..value)
                         .map(|x| {
                             let c = f.add_block();
-                            let cv = f.add_op(c, Operator::I64Const { value: x }, &[], types);
+                            let mut cv = f.add_op(c, Operator::I64Const { value: x }, &[], types);
+                            if let Some(b) = self.binders.u64 {
+                                cv =
+                                    f.add_op(c, Operator::Call { function_index: b }, &[cv], types);
+                            }
                             f.set_terminator(
                                 c,
                                 waffle::Terminator::Br {
@@ -182,7 +206,16 @@ impl Obfuscate for Bound {
                         let ks = (0..=value)
                             .map(|x| {
                                 let c = f.add_block();
-                                let cv = f.add_op(c, Operator::I64Const { value: x }, &[], types);
+                                let mut cv =
+                                    f.add_op(c, Operator::I64Const { value: x }, &[], types);
+                                if let Some(b) = self.binders.u64 {
+                                    cv = f.add_op(
+                                        c,
+                                        Operator::Call { function_index: b },
+                                        &[cv],
+                                        types,
+                                    );
+                                }
                                 f.set_terminator(
                                     c,
                                     waffle::Terminator::Br {
