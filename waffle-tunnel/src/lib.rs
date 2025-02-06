@@ -127,24 +127,6 @@ impl Tunnel {
                     if state.contains_key(&i) {
                         continue 'a;
                     }
-                    if value_is_pure(i, src) {
-                        let mut unused = true;
-                        for j in src.blocks[k].insts.iter().cloned() {
-                            src.values[j].visit_uses(&src.arg_pool, |u| {
-                                if u == i {
-                                    unused = false;
-                                }
-                            });
-                        }
-                        src.blocks[k].terminator.visit_uses(|u| {
-                            if u == i {
-                                unused = false;
-                            }
-                        });
-                        if unused {
-                            continue 'a;
-                        }
-                    }
                     let v = match &src.values[i] {
                         waffle::ValueDef::BlockParam(block, _, _) => todo!(),
                         waffle::ValueDef::Operator(operator, list_ref, list_ref1) => {
@@ -214,31 +196,32 @@ impl Tunnel {
                                    k: &BlockTarget,
                                    a: Option<(Value, ConstVal)>| {
                     let mut p = vec![];
-                    anyhow::Ok(BlockTarget {
-                        args: k
-                            .args
-                            .iter()
-                            .filter_map(|b| state.get(b))
-                            .cloned()
-                            .filter_map(|v| {
-                                if pegged.contains(&v) {
-                                    let c = cvals.get(&v).cloned().unwrap();
-                                    p.push(Some(c));
-                                    None
-                                } else {
-                                    match a {
-                                        Some((w, c)) if v == w => {
-                                            p.push(Some(c));
-                                            None
-                                        }
-                                        _ => {
-                                            p.push(None);
-                                            Some(v)
-                                        }
+                    let args = k
+                        .args
+                        .iter()
+                        .filter_map(|b| state.get(b))
+                        .cloned()
+                        .filter_map(|v| {
+                            if pegged.contains(&v) {
+                                let c = cvals.get(&v).cloned().unwrap();
+                                p.push(Some(c));
+                                None
+                            } else {
+                                match a {
+                                    Some((w, c)) if v == w => {
+                                        p.push(Some(c));
+                                        None
+                                    }
+                                    _ => {
+                                        p.push(None);
+                                        Some(v)
                                     }
                                 }
-                            })
-                            .collect(),
+                            }
+                        })
+                        .collect();
+                    anyhow::Ok(BlockTarget {
+                        args: args,
                         block: this.translate(dst, src, k.block, p)?,
                     })
                 };
@@ -259,7 +242,7 @@ impl Tunnel {
                             .params
                             .iter()
                             .map(|a| a.1)
-                            .zip(target.args.iter().cloned())
+                            .zip(target.args.iter().filter_map(|v| state.get(v)).cloned())
                             .collect();
                         this.fused = true;
                         Ok(Err(target.block))
