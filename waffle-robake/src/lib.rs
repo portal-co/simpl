@@ -179,7 +179,7 @@ impl Robake {
                 },
             },
         );
-        return Ok((f.add_blockparam(n, Type::I32), n));
+        return Ok((f.add_blockparam(n, types[0]), n));
     }
 }
 macro_rules! ttr {
