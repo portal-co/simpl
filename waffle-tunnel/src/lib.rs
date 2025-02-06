@@ -19,6 +19,7 @@ pub fn tunnel(
 ) -> anyhow::Result<()> {
     // let mut trials: usize = 0;
     // let mut plugins = plugins.into_iter().map(|a| (a, 0)).collect::<Vec<_>>();
+    f.convert_to_max_ssa(None);
     'a: loop {
         let mut t = Tunnel::default();
         t.peggers = pinners.clone();
