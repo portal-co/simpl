@@ -208,10 +208,10 @@ impl Tunnel {
                                 None
                             } else {
                                 match a {
-                                    Some((w, c)) if v == w => {
-                                        p.push(Some(c));
-                                        None
-                                    }
+                                    // Some((w, c)) if v == w => {
+                                    //     p.push(Some(c));
+                                    //     None
+                                    // }
                                     _ => {
                                         p.push(None);
                                         Some(v)
