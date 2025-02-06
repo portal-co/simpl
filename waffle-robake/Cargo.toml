@@ -9,5 +9,6 @@ license = "CC0-1.0"
 anyhow = "1.0.94"
 arena-traits = "0.2.1"
 itertools = "0.14.0"
+once_map = "0.4.21"
 portal-pc-waffle.workspace = true
 waffle-ast = "0.4.3"
