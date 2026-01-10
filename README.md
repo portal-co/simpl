@@ -1,13 +1,14 @@
 # simpl
 
 ## Description
-Project simpl
+A workspace (`simpl`) containing `waffle` extensions like `waffle-bounce`, `waffle-tunnel`, `walock`. Likely simplified or specialized `waffle` tools.
 
 ## Goals
-- [ ] Add project goals
+- [ ] Extend `waffle` capabilities
+- [ ] Provide specialized WASM tools
 
 ## Progress
-- [ ] Initial setup
+- [ ] Workspace setup
 
 ---
 *AI assisted*
